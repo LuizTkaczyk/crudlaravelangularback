@@ -44,20 +44,6 @@ class VendaController extends Controller
             ]);
         };
     }
-
-
-    // Produto::create([
-    //     'nome' => $request['nome'],
-    //     'quantidade' => $request['quantidade'],
-    //     'valorCompra' => $request['valorCompra'],
-    //     'valorLucro' => $request['lucro'],
-    //     'valorVenda' => $request['valorVenda'],
-    //     'valorTotalCompra' => $request['valorTotalCompra'],
-    //     'valorTotalVenda' => $request['valorTotalVenda'],
-    //     'codProduto' => $request['codProduto'],
-    //     'data_compra' => Carbon::now()->subHours(3)
-    // ]);
-
     /**
      * Store a newly created resource in storage.
      *
