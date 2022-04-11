@@ -13,7 +13,6 @@ class ProdutoController extends Controller
 {
 
     public function index(Request $request){
-
         // teste de conflito
     }
     
