@@ -21,6 +21,8 @@ class Vendas extends Model
         'valorComDesconto',
         'valorSemDesconto',
         'dataVenda',
-        'totalVenda'
+        'totalComDesconto',
+        'totalSemDesconto',
+        'totalDesconto'
     ];
 }

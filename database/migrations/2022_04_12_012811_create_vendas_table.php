@@ -23,9 +23,13 @@ class CreateVendasTable extends Migration
             $table->float('valorComDesconto');
             $table->float('valorSemDesconto');
             $table->string('dataVenda');
-            $table->float('totalVenda');
+            $table->float('totalComDesconto');
+            $table->float('totalSemDesconto');
+            $table->float('totalDesconto');
+            $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *

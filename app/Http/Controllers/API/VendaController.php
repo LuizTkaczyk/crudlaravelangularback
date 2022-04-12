@@ -29,17 +29,19 @@ class VendaController extends Controller
     {
         $data = json_decode($request->getContent(), true);
 
-        foreach ($data as $datas) {
+        foreach ($data as $valueOf) {
             Vendas::create([
-                'codigo' => $datas['codigo'],
-                'nome' => $datas['nome'],
-                'valorVenda' => $datas['valorVenda'],
-                'quantidade' => $datas['quantidade'],
-                'desconto' => $datas['desconto'],
-                'valorComDesconto' => $datas['valorComDesconto'],
-                'valorSemDesconto' => $datas['valorSemDesconto'],
-                'dataVenda' => $datas['dataVenda'],
-                'totalVenda' => 100
+                'codigo' => $valueOf['codigo'],
+                'nome' => $valueOf['nome'],
+                'valorVenda' => $valueOf['valorVenda'],
+                'quantidade' => $valueOf['quantidade'],
+                'desconto' => $valueOf['desconto'],
+                'valorComDesconto' => $valueOf['valorComDesconto'],
+                'valorSemDesconto' => $valueOf['valorSemDesconto'],
+                'dataVenda' => $valueOf['dataVenda'],
+                'totalComDesconto' => $valueOf['totalComDesconto'],
+                'totalSemDesconto' => $valueOf['totalSemDesconto'],
+                'totalDesconto' => $valueOf['totalDesconto']
 
             ]);
         };
