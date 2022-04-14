@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produto;
 use App\Models\Vendas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -45,6 +46,17 @@ class VendaController extends Controller
 
             ]);
         };
+    }
+
+    public function removeEstoque(Request $request){
+        $sub = $request->get('quantidadeVendida');
+        $produtoId = $request->get('produtoId');
+        
+        $produto = Produto::where('id', $produtoId)->first();
+        $emEstoque = $produto['quantidade']-$sub;
+
+        $a = Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]);
+        Log::debug($emEstoque); 
     }
     /**
      * Store a newly created resource in storage.
