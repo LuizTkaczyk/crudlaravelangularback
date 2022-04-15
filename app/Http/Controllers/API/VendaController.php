@@ -7,6 +7,7 @@ use App\Models\Produto;
 use App\Models\Vendas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use utils\Utils;
 
 class VendaController extends Controller
 {
@@ -42,10 +43,12 @@ class VendaController extends Controller
                 'dataVenda' => $valueOf['dataVenda'],
                 'totalComDesconto' => $valueOf['totalComDesconto'],
                 'totalSemDesconto' => $valueOf['totalSemDesconto'],
-                'totalDesconto' => $valueOf['totalDesconto']
+                'totalDesconto' => $valueOf['totalDesconto'],
+                'idVenda' => $valueOf['idVenda']
 
             ]);
         };
+
     }
 
     public function removeEstoque(Request $request){
@@ -112,5 +115,11 @@ class VendaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function randomCode()
+    {
+       return random_int(100000, 999999);
+       
     }
 }

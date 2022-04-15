@@ -25,7 +25,7 @@ Route::prefix('api')->middleware(['cors'])->group(function () {
     Route::put('update-produto/{id}',[ProdutoController::class,'update']);
     Route::post('create-venda',  [VendaController::class, 'create']);
     Route::post('remove-estoque', [VendaController::class ,'removeEstoque']);
-    Route::get('teste', [VendaController::class, 'teste']);
+    Route::get('codigo-venda', [VendaController::class, 'randomCode']);
     Route::get('busca-produto/{codigo}',[ProdutoController::class, 'buscaProduto']);
    
 });

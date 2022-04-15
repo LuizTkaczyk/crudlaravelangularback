@@ -23,6 +23,7 @@ class Vendas extends Model
         'dataVenda',
         'totalComDesconto',
         'totalSemDesconto',
-        'totalDesconto'
+        'totalDesconto',
+        'idVenda'
     ];
 }
