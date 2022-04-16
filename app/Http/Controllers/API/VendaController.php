@@ -58,8 +58,20 @@ class VendaController extends Controller
         $produto = Produto::where('id', $produtoId)->first();
         $emEstoque = $produto['quantidade']-$sub;
 
-        $a = Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]);
-        Log::debug($emEstoque); 
+        $a = Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]); 
+    }
+
+    public function gerarRelatorio(){
+        // $res = Vendas::all()->groupBy('idVenda');
+        // Log::debug(json_encode($res));
+        // return response()->json($res, 200);
+
+
+        $res = Vendas::all()->sortByDesc('created_at')->groupBy('dataVenda');
+      
+        Log::debug( $res);
+        return response()->json($res, 200);
+
     }
     /**
      * Store a newly created resource in storage.
@@ -119,7 +131,10 @@ class VendaController extends Controller
 
     public function randomCode()
     {
-       return random_int(100000, 999999);
-       
+        do{
+            $randomCode = random_int(100000,999999);
+        }while(Vendas::where('idVenda', '=', $randomCode)->first());
+
+        return $randomCode;
     }
 }

@@ -78,7 +78,6 @@ class ProdutoController extends Controller
 
     public function buscaProduto($codigo){
         $data = Produto::where('codProduto', $codigo)->first();
-        Log::debug($data);
         return response()->json($data, 200);
     }
 }

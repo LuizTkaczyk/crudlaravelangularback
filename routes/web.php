@@ -27,6 +27,7 @@ Route::prefix('api')->middleware(['cors'])->group(function () {
     Route::post('remove-estoque', [VendaController::class ,'removeEstoque']);
     Route::get('codigo-venda', [VendaController::class, 'randomCode']);
     Route::get('busca-produto/{codigo}',[ProdutoController::class, 'buscaProduto']);
+    Route::get('relatorios', [VendaController::class, 'gerarRelatorio']);
    
 });
 // Route::prefix('api')->middleware(['cors'])->group(function () {
