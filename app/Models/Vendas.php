@@ -24,6 +24,7 @@ class Vendas extends Model
         'totalComDesconto',
         'totalSemDesconto',
         'totalDesconto',
-        'idVenda'
+        'idVenda',
+        'formaPagamento'
     ];
 }

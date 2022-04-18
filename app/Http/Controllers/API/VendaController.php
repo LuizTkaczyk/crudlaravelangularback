@@ -44,7 +44,8 @@ class VendaController extends Controller
                 'totalComDesconto' => $valueOf['totalComDesconto'],
                 'totalSemDesconto' => $valueOf['totalSemDesconto'],
                 'totalDesconto' => $valueOf['totalDesconto'],
-                'idVenda' => $valueOf['idVenda']
+                'idVenda' => $valueOf['idVenda'],
+                'formaPagamento' => $valueOf['formaPagamento']
 
             ]);
         };
@@ -58,20 +59,12 @@ class VendaController extends Controller
         $produto = Produto::where('id', $produtoId)->first();
         $emEstoque = $produto['quantidade']-$sub;
 
-        $a = Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]); 
+        Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]); 
     }
 
     public function gerarRelatorio(){
-        // $res = Vendas::all()->groupBy('idVenda');
-        // Log::debug(json_encode($res));
-        // return response()->json($res, 200);
-
-
         $res = Vendas::all()->sortByDesc('created_at')->groupBy('dataVenda');
-      
-        Log::debug( $res);
         return response()->json($res, 200);
-
     }
     /**
      * Store a newly created resource in storage.

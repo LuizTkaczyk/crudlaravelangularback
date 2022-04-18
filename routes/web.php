@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\Pagination;
+
+use App\Http\Controllers\API\ConfiguracoesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProdutoController;
 use App\Http\Controllers\API\VendaController;
-use App\Http\Controllers\BarCodeController;
 
 // Route::prefix('api/person')->group(function(){
 //     Route::get('/', [PersonController::class, 'getAll']);
@@ -28,6 +28,8 @@ Route::prefix('api')->middleware(['cors'])->group(function () {
     Route::get('codigo-venda', [VendaController::class, 'randomCode']);
     Route::get('busca-produto/{codigo}',[ProdutoController::class, 'buscaProduto']);
     Route::get('relatorios', [VendaController::class, 'gerarRelatorio']);
+    Route::post('adiciona-juros', [ConfiguracoesController::class, 'taxaJuros']);
+    Route::get('juros', [ConfiguracoesController::class, 'getJuros']);
    
 });
 // Route::prefix('api')->middleware(['cors'])->group(function () {
