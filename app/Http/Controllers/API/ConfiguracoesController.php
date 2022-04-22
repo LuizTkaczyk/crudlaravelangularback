@@ -10,12 +10,25 @@ use Illuminate\Support\Facades\Log;
 
 class ConfiguracoesController extends Controller
 {
-    // função q salva a taxa de juros e ao mesmo tempo modifica ela sem ter q usar uma classe de update!!!!!
-    public function taxaJuros(Request $request)
+    // função q salva a taxa de juros e ao mesmo tempo modifica caso ela não tenha id!!!!!
+    public function taxaJuros(Request $request, $id = null)
     {
-        DB::table('configuracoes')->where('taxaJurosVista', '!=', null)->update(array('taxaJurosVista' => $request->taxaJurosVista));
-        DB::table('configuracoes')->where('taxaJurosPrazo', '!=', null)->update(array('taxaJurosPrazo' => $request->taxaJurosPrazo));
-
+        if($id){
+            $data = Configuracoes::find($id);
+            $data->taxaJurosVista = $request->taxaJurosVista;
+            $data->taxaJurosPrazo = $request->taxaJurosPrazo;
+            $data->taxaJurosDebito = $request->taxaJurosDebito;
+            $data->taxaJurosParcela = $request->taxaJurosParcela;
+            $data->save();
+            
+        }else{
+            Configuracoes::create([
+                'taxaJurosVista' => $request['taxaJurosVista'],
+                'taxaJurosPrazo' => $request['taxaJurosPrazo'],
+                'taxaJurosDebito' => $request['taxaJurosDebito'],
+                'taxaJurosParcela' => $request['taxaJurosParcela']
+            ]);
+        }
     }
 
     public function getJuros()

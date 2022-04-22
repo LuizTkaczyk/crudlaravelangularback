@@ -12,6 +12,9 @@ class Configuracoes extends Model
     protected $table = "configuracoes";
 
     protected $fillable =[
-        'taxaJuros'
+        'taxaJurosVista',
+        'taxaJurosPrazo',
+        'taxaJurosDebito',
+        'taxaJurosParcela'
     ];
 }

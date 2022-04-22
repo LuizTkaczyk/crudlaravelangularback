@@ -28,7 +28,7 @@ Route::prefix('api')->middleware(['cors'])->group(function () {
     Route::get('codigo-venda', [VendaController::class, 'randomCode']);
     Route::get('busca-produto/{codigo}',[ProdutoController::class, 'buscaProduto']);
     Route::get('relatorios', [VendaController::class, 'gerarRelatorio']);
-    Route::post('adiciona-juros', [ConfiguracoesController::class, 'taxaJuros']);
+    Route::put('adiciona-juros/{id?}', [ConfiguracoesController::class, 'taxaJuros']);
     Route::get('juros', [ConfiguracoesController::class, 'getJuros']);
    
 });

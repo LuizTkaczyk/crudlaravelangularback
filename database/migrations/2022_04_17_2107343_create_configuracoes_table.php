@@ -15,8 +15,10 @@ class CreateConfiguracoesTable extends Migration
     {
         Schema::create('configuracoes', function (Blueprint $table) {
             $table->id();
-            $table->float('taxaJurosVista')->default(0);
+            $table->float('taxaJurosVista');
             $table->float('taxaJurosPrazo');
+            $table->float('taxaJurosDebito');
+            $table->float('taxaJurosParcela');
             $table->timestamps();
         });
     }
