@@ -45,7 +45,9 @@ class VendaController extends Controller
                 'totalSemDesconto' => $valueOf['totalSemDesconto'],
                 'totalDesconto' => $valueOf['totalDesconto'],
                 'idVenda' => $valueOf['idVenda'],
-                'formaPagamento' => $valueOf['formaPagamento']
+                'formaPagamento' => $valueOf['formaPagamento'],
+                'cod_relatorio' => $valueOf['codRelatorio'],
+                'tipo_juros' => $valueOf['tipoJuros']
 
             ]);
         };
@@ -59,13 +61,36 @@ class VendaController extends Controller
         $produto = Produto::where('id', $produtoId)->first();
         $emEstoque = $produto['quantidade']-$sub;
 
-        Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]); 
+        Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]);
+        Produto::where('quantidade', 0)->delete();
+    }
+
+    public function restoreEstoque($id){
+        $produto = Produto::where('codProduto', $id)->get();
+        Log::debug($id);
+        //Produto::withTrashed('codProduto', $id)->restore();
     }
 
     public function gerarRelatorio(){
         $res = Vendas::all()->sortByDesc('created_at')->groupBy('dataVenda');
         return response()->json($res, 200);
     }
+
+    public function getTotais($idVenda){
+        $soma = Vendas::where('cod_relatorio', $idVenda)->get();
+        $totalSemDesconto = $soma->sum('valorSemDesconto');
+        $totalComDesconto = $soma->sum('valorComDesconto');
+
+        $data = ([
+            'totalSemDesconto' => $totalSemDesconto,
+            'totalComDesconto' => $totalComDesconto,
+            'totalDesconto' => $totalSemDesconto - $totalComDesconto
+        ]);
+            
+        return $data;
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

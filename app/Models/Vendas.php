@@ -25,6 +25,8 @@ class Vendas extends Model
         'totalSemDesconto',
         'totalDesconto',
         'idVenda',
-        'formaPagamento'
+        'formaPagamento',
+        'cod_relatorio',
+        'tipo_juros'
     ];
 }
