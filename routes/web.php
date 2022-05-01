@@ -31,7 +31,7 @@ Route::prefix('api')->middleware(['cors'])->group(function () {
     Route::put('adiciona-juros/{id?}', [ConfiguracoesController::class, 'taxaJuros']);
     Route::get('juros', [ConfiguracoesController::class, 'getJuros']);
     Route::get('totais/{idVenda}',[VendaController::class, 'getTotais']);
-    Route::post('restaurar-produto/{id}', [VendaController::class, 'restoreEstoque']);
+    Route::post('restaurar-produto/{idProduto}', [VendaController::class, 'restoreEstoque']);
    
 });
 // Route::prefix('api')->middleware(['cors'])->group(function () {

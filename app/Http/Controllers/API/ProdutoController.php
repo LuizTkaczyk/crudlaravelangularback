@@ -21,12 +21,13 @@ class ProdutoController extends Controller
      */
     public function getAllPaginate(Request $request){
         $perPage = $request->perpage;
-        $resources = DB::table('produtos')->orderBy('id','DESC')->paginate($perPage);
+        $resources = DB::table('produtos')->where('deleted_at', null)->orderBy('id','DESC')->paginate($perPage);
         return response()->json($resources);
     }
 
     public function getAll(){
-        $data = Produto::get();
+        $data = Produto::where('deleted_at', null)->get();
+        //Log::debug();
         return response()->json($data, 200);
     }
 

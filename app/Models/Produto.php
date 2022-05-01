@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Produto extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
 
     protected $table = "produtos";
 
@@ -21,6 +24,7 @@ class Produto extends Model
         'valorTotalVenda',
         'codProduto',
         'data_compra',
-        'data_venda'
+        'data_venda',
+        'deleted_at'
     ];
 }

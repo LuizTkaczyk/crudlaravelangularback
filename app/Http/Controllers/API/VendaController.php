@@ -62,13 +62,19 @@ class VendaController extends Controller
         $emEstoque = $produto['quantidade']-$sub;
 
         Produto::where('id', $produtoId)->update(['quantidade' => $emEstoque]);
-        Produto::where('quantidade', 0)->delete();
+        Produto::where('quantidade',0)->delete();
     }
 
-    public function restoreEstoque($id){
-        $produto = Produto::where('codProduto', $id)->get();
-        Log::debug($id);
-        //Produto::withTrashed('codProduto', $id)->restore();
+    public function restoreEstoque(Request $request, $idProduto){
+        $produto = Produto::where('codProduto', $idProduto)->withTrashed()->first();
+        //Log::debug($produto);
+        Produto::where('codProduto', $idProduto)->update(['quantidade' => $produto->quantidade + $request->quantidade]);
+        
+        if($produto->quantidade == 0){
+            Produto::where('codProduto', $idProduto)->restore();
+            Produto::where('codProduto', $idProduto)->update(['quantidade' => $produto->quantidade + $request->quantidade]);
+        
+        }
     }
 
     public function gerarRelatorio(){
