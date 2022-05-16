@@ -79,6 +79,7 @@ class VendaController extends Controller
 
     public function gerarRelatorio(){
         $res = Vendas::all()->sortByDesc('created_at')->groupBy('dataVenda');
+        Log::debug($res);
         return response()->json($res, 200);
     }
 

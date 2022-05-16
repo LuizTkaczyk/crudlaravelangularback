@@ -4,6 +4,7 @@
 use App\Http\Controllers\API\ConfiguracoesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProdutoController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VendaController;
 
 // Route::prefix('api/person')->group(function(){
@@ -14,10 +15,10 @@ use App\Http\Controllers\API\VendaController;
 //     Route::put('/{id}',[PersonController::class,'update']);
 // });
 
-Route::prefix('api')->middleware(['cors'])->group(function () {
+Route::prefix('api')->middleware(['apiJwt'])->group(function () {
     Route::get('produto/', [ProdutoController::class, 'index']);
     Route::get('produto/', [ProdutoController::class, 'getAllPaginate']);
-    Route::get('paginate-produto/', [ProdutoController::class, 'getAllPaginate']);//tesete de paginação!!!!!!!!!!!
+    Route::get('paginate-produto/', [ProdutoController::class, 'getAllPaginate']);//teste de paginação!!!!!!!!!!!
     Route::get('all-produto/all', [ProdutoController::class, 'getAll']);
     Route::post('create-produto/',[ProdutoController::class, 'create']);
     Route::delete('delete-produto/{id}', [ProdutoController::class, 'delete']);
@@ -32,8 +33,10 @@ Route::prefix('api')->middleware(['cors'])->group(function () {
     Route::get('juros', [ConfiguracoesController::class, 'getJuros']);
     Route::get('totais/{idVenda}',[VendaController::class, 'getTotais']);
     Route::post('restaurar-produto/{idProduto}', [VendaController::class, 'restoreEstoque']);
+    Route::post('create-user', [UserController::class, 'createUser']);
    
 });
+
 // Route::prefix('api')->middleware(['cors'])->group(function () {
 //     Route::get('vendas/', [VendaController::class, 'index']);
 // });
