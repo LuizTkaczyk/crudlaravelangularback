@@ -103,6 +103,16 @@ class VendaController extends Controller
         return $data;
     }
 
+    public function testeData($mes){
+        $query = Vendas::query();
+
+        $query->whereMonth('created_at', '=', $mes);
+        Log::debug($query->get());
+
+        return $query->get();
+
+    }
+
 
     /**
      * Store a newly created resource in storage.

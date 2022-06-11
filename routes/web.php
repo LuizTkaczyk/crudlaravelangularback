@@ -35,6 +35,7 @@ Route::prefix('api')->middleware(['apiJwt'])->group(function () {
     Route::post('restaurar-produto/{idProduto}', [VendaController::class, 'restoreEstoque']);
     Route::post('create-user', [UserController::class, 'createUser']);
     Route::get('relatorio-individual/{codRelatorio}', [VendaController::class, 'gerarRelatorioVenda']);
+    Route::get('relatorio-mes/{mes}', [VendaController::class, 'testeData']);
    
 });
 
